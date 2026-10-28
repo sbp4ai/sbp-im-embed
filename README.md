@@ -1,4 +1,33 @@
-# sbp-im-embed · SBP IM 内嵌技能
+# sbp-im-embed · SBP IM-embed Skill
+
+A **Skill** for a WorkBuddy / Claude / Codex style agent: it lets the agent **lazy-load an SBP web page**
+inside an IM (Feishu, DingTalk, Slack, etc.), thereby taking over the Agent session running on the user's
+computer (claude-code / codex / dsh / hermes / openclaw / workbuddy / qwen-office).
+
+## Usage
+
+Install this repository as a skill into your agent:
+
+- WorkBuddy: drop this directory under `skills/` or the user-level `~/.workbuddy/skills/` to be recognized.
+- Other agents that support SKILL.md: import `SKILL.md` per their own skill-loading mechanism.
+
+After the skill triggers, the agent will:
+1. request a session binding / device code from `sbp-server`;
+2. generate a card that says "open the SBP panel inside the IM" (the web page in the card comes from
+   `sbp-server`'s `sbp-sdk.js`, i.e. the `sbp-sdk` repository);
+3. the user views the screen, taps options, and sends commands directly inside the IM.
+
+## Dependencies
+
+- Protocol spec: `sbp-spec`
+- Public relay: `sbp-server` (serves `sbp-sdk` as a static web page to the card)
+- Local daemon: `sbp-agent`
+
+This repository contains only `SKILL.md` (the skill definition) — no runtime code.
+
+---
+
+# sbp-im-embed · SBP IM 内嵌技能（中文）
 
 一个 WorkBuddy / Claude / Codex 类智能体的**技能（Skill）**：让智能体在 IM（飞书、
 钉钉、Slack 等）对话里**懒加载一个 SBP 网页**，从而接管用户电脑上正在跑的 Agent
